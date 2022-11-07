@@ -1,17 +1,15 @@
-// this is where we're going to display the burger that we are stacking
-// items clicked in the ingredient list will be added to this component
-import React, { Component } from 'react'
-// since burger pane needs to display ingredient components, we'll import those as well
+import React from 'react'
+
 import Ingredient from './Ingredient'
 
-export default class BurgerPane extends Component {
-    render () {
-        let burgerBits = this.props.ingredients.map((ing, i) => (
+const BurgerPane = ({ ingredients, remove, clear }) => {
+        // console.log(this.props)
+        let burgerBits = ingredients.map((ing, i) => (
             <li key={i}>
-                <Ingredient
-                    itemKey={i}
-                    ingredient={ing}
-                    clickFunc={this.props.remove}
+                <Ingredient 
+                    itemKey={i} 
+                    ingredient={ing} 
+                    clickFunc={remove}
                 />
             </li>
         ))
@@ -19,10 +17,12 @@ export default class BurgerPane extends Component {
             <section className='pane'>
                 <h3>Burger Pane</h3>
                 <ul>
-                    { burgerBits }
+                    {burgerBits}
                 </ul>
-                <button onClick={this.props.clear}>Clear Burger</button>
+                <button onClick={clear}>Clear Burger</button>
             </section>
         )
-    }
+
 }
+
+export default BurgerPane
